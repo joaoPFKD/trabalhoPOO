@@ -54,7 +54,7 @@ public:
     }
 
     void mostrar(){
-        cout << "pagamento de " << valor << " via "<< meio << endl;
+        cout << "pagamento de " << "R$ "<< valor << " via "<< meio << endl;
     }
 };
 
@@ -123,7 +123,7 @@ public:
 
 int main() {
     Produto p1;
-    p1.criar("Prancha de surf", "32L e 5.8", 3500.00, 10);
+    p1.criar("Prancha de surf", "32L e 5.8", 2500.00, 10);
 
     Comprador c1;
     c1.criar("Joao Paulo", "joaopaulo.kruppell@email.com");
@@ -132,7 +132,7 @@ int main() {
     item1.criar(&p1, 2);
 
     Pagamento pag1;
-    pag1.criar(7000.00, "CREDITO");
+    pag1.criar(5000.00, "CREDITO");
 
     Compra compra;
     compra.criar(&c1);
