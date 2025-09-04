@@ -54,7 +54,7 @@ public:
     }
 
     void mostrar(){
-        cout << "pagamento de " << valor << "via"<< meio << endl;
+        cout << "pagamento de " << valor << " via "<< meio << endl;
     }
 };
 
@@ -74,10 +74,73 @@ public:
 
 };
 
+class Compra {
+public:
+    Comprador* comprador;
+    string estado;
+    ItemCompra itens[10];
+    Pagamento pagamentos[5];
+    int qtdItens = 0;
+    int qtdPagamentos = 0;
+
+    void criar(Comprador* c) {
+        comprador = c;
+        estado = "PENDENTE";
+    }
+
+    void adicionarItem(ItemCompra i) {
+        if (qtdItens < 10) {
+            itens[qtdItens] = i;
+            qtdItens++;
+        }
+    }
+
+    void finalizar(Pagamento p) {
+        if (qtdPagamentos < 5) {
+            pagamentos[qtdPagamentos] = p;
+            qtdPagamentos++;
+            estado = "CONFIRMADA";
+        }
+    }
+
+    void mostrar() {
+        cout << "\n=== COMPRA ===" << endl;
+        comprador->mostrar();
+        cout << "Estado: " << estado << endl;
+
+        cout << "\nItens:" << endl;
+        for (int i = 0; i < qtdItens; i++) {
+            itens[i].mostrar();
+        }
+
+        cout << "\nPagamentos:" << endl;
+        for (int i = 0; i < qtdPagamentos; i++) {
+            pagamentos[i].mostrar();
+        }
+    }
+};
 
 
+int main() {
+    Produto p1;
+    p1.criar("Prancha de surf", "32L e 5.8", 3500.00, 10);
 
-int main()
-{
-Produto();
+    Comprador c1;
+    c1.criar("Joao Paulo", "joaopaulo.kruppell@email.com");
+
+    ItemCompra item1;
+    item1.criar(&p1, 2);
+
+    Pagamento pag1;
+    pag1.criar(7000.00, "CREDITO");
+
+    Compra compra;
+    compra.criar(&c1);
+    compra.adicionarItem(item1);
+    compra.finalizar(pag1);
+
+    p1.mostrar();
+    compra.mostrar();
+
+    return 0;
 }
